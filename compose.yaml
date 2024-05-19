@@ -1,0 +1,36 @@
+services:
+  proxy:
+    container_name: proxy
+    hostname: proxy
+    image: nginx:latest
+    ports:
+      - '8000-8002:18000-18002'
+    volumes:
+      - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf
+  
+  web_8000:
+    container_name: web_8000
+    hostname: web_8000
+    image: nginx:latest
+    ports:
+      - '18000:80'
+    volumes:
+      - ./src/html/web_8000.html:/usr/share/nginx/html/index.html
+
+  web_8001:
+    container_name: web_8001
+    hostname: web_8001
+    image: nginx:latest
+    ports:
+      - '18001:80'
+    volumes:
+      - ./src/html/web_8001.html:/usr/share/nginx/html/index.html
+
+  web_8002:
+    container_name: web_8002
+    hostname: web_8002
+    image: nginx:latest
+    ports:
+      - '18002:80'
+    volumes:
+      - ./src/html/web_8002.html:/usr/share/nginx/html/index.html
